@@ -31,8 +31,16 @@
       </div>
       <div class="main container">
         <div class="products">
-          <div v-for="products"></div>
-          <button v-on:click="addToCart">Add to Cart</button>
+          <div v-for="product in products" class="product">
+            <div>
+              <h4 class="product-title">
+                {{ product.title }}
+              </h4>
+            </div>
+          </div>
+          <button v-on:click="addToCart" class="add-to-cart btn">
+            Add to Cart
+          </button>
         </div>
         <div class="cart">
           <h2>Shopping Cart</h2>
