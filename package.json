@@ -23,11 +23,12 @@
   ],
   "license": "UNLICENSED",
   "dependencies": {
-    "axios": "~0.15.2",
+    "axios": "^0.15.3",
     "body-parser": "~1.18.2",
     "dotenv": "~2.0.0",
     "express": "^4.14.0",
-    "querystring": "~0.2.0",
+    "pusher": "^4.0.2",
+    "querystring": "^0.2.0",
     "scrollmonitor": "^1.2.4",
     "vue": "~2.1.0",
     "vue-resource": "^1.5.1"
