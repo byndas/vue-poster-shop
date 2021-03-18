@@ -18,6 +18,7 @@ var pusher = new Pusher({
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
+// express sets "/" as home screen
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname + "/index.html"));
 });
@@ -43,7 +44,7 @@ app.get("/search/:query", function(req, res) {
       console.log(error);
     });
 });
-
+// pusher updates data
 app.post("/cart_update", function(req, res) {
   pusher.trigger("cart", "update", req.body);
 });
@@ -55,6 +56,7 @@ if (process.env.NODE_ENV !== "production") {
   require("reload")(server, app);
 }
 
+// consoles that server is listening
 server.listen(process.env.PORT, function() {
   console.log("Listening on port ".concat(process.env.PORT));
 });
