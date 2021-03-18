@@ -1,8 +1,9 @@
 var PRICE = 9.99;
 var LOAD_NUM = 10;
 
-var pusher = new Pusher("[PUSHER_KEY]", {
-  cluster: "[PUSHER_CLUSTER]",
+// pusher key is first argument
+var pusher = new Pusher("9ad7d2c2a34996446ef0", {
+  cluster: "ap2",
   encrypted: true
 });
 
@@ -29,6 +30,8 @@ new Vue({
     });
     var channel = pusher.subscribe("cart");
     channel.bind("update", function(data) {
+      // sets a flag to prevent any updates from occurring if
+      // the cart data was changed as a result of the pusher update
       vue.pusherUpdate = true;
       vue.cart = data;
       vue.total = 0;
@@ -53,8 +56,11 @@ new Vue({
     cart: {
       handler: function(val) {
         if (!this.pusherUpdate) {
+          // if cart changes but not due to a pusher update,
+          // do the ajax call
           this.$http.post("/cart_update", val);
         } else {
+          // otherwise set the flag to false
           this.pusherUpdate = false;
         }
       },
